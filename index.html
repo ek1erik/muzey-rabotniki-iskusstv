@@ -687,7 +687,7 @@ function renderBody(h){if(h.special)return renderArchive(h);
   const hero=`<div class="hero ${img?"":"noimg"}">${img?`<img class="blur" src="${img}" alt=""><img class="bg" src="${img}" alt="">`:""}
     <div class="hc"><svg viewBox="0 0 42 48">${plate(h)}</svg><div><div class="eyebrow">${S[h.st]}</div><h2>${addr(h).replace(S[h.st]+", ","Дом "+"")}</h2><div class="sub">${subOf(h)}</div></div></div></div>`;
   if(!s){
-    b.innerHTML=hero+`<div class="pin"><div class="empty" style="padding-top:30px">Мы ещё не знаем историю дачи <b>${addr(h)}</b>.<br>Если у вас есть фотографии, документы или воспоминания — поделитесь ими с музеем.</div>${nav(h)}</div>`;
+    b.innerHTML=hero+`<div class="pin"><div class="empty" style="padding-top:30px">Мы ещё не знаем историю дачи <b>${addr(h)}</b>.</div>${nav(h)}</div>`;
   } else {
     const ph=s.ph||[], tabs=[["people","Люди"]];
     if(s.ft||s.q)tabs.push(["story","История"]);

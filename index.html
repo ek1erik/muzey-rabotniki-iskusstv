@@ -687,8 +687,7 @@ function renderBody(h){if(h.special)return renderArchive(h);
   const hero=`<div class="hero ${img?"":"noimg"}">${img?`<img class="blur" src="${img}" alt=""><img class="bg" src="${img}" alt="">`:""}
     <div class="hc"><svg viewBox="0 0 42 48">${plate(h)}</svg><div><div class="eyebrow">${S[h.st]}</div><h2>${addr(h).replace(S[h.st]+", ","Дом "+"")}</h2><div class="sub">${subOf(h)}</div></div></div></div>`;
   if(!s){
-    b.innerHTML=hero+`<div class="pin"><div class="empty" style="padding-top:30px">Мы ещё не знаем историю дачи <b>${addr(h)}</b>.<br>Если у вас есть фотографии, документы или воспоминания — поделитесь ими с музеем.</div>
-      <button class="cta solid" id="add">＋ Поделиться историей этой дачи</button>${nav(h)}</div>`;
+    b.innerHTML=hero+`<div class="pin"><div class="empty" style="padding-top:30px">Мы ещё не знаем историю дачи <b>${addr(h)}</b>.<br>Если у вас есть фотографии, документы или воспоминания — поделитесь ими с музеем.</div>${nav(h)}</div>`;
   } else {
     const ph=s.ph||[], tabs=[["people","Люди"]];
     if(s.ft||s.q)tabs.push(["story","История"]);
@@ -724,7 +723,7 @@ function renderBody(h){if(h.special)return renderArchive(h);
     b.querySelectorAll("[data-ph]").forEach(e=>e.onclick=()=>{const p=ph[+e.dataset.ph];$("#lbImg").innerHTML=`<img src="${p[0]}" alt="" style="width:100%;display:block">`;$("#lbCap").textContent=p[2];$("#lightbox").classList.add("on")});
     $("#share").onclick=async()=>{try{await navigator.clipboard.writeText(location.href);toast("Ссылка скопирована")}catch(_){toast("Не удалось скопировать")}};
   }
-  $("#add").onclick=()=>toast("В MVP материалы принимает куратор музея");
+  if($("#add"))$("#add").onclick=()=>toast("В MVP материалы принимает куратор музея");
   b.querySelectorAll("[data-go]").forEach(x=>x.onclick=()=>{b.scrollTop=0;openHouse(x.dataset.go)});
 }
 const gal=(s,lim)=>s.photos.slice(0,lim||99).map((p,i)=>`<button class="ph" data-i="${i}">${photoSVG(p[0],s.since+""+i)}<span>${p[1]} · ${p[2]}</span></button>`).join("");
